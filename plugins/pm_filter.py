@@ -742,7 +742,33 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝙼𝙰𝙽𝚄𝙴𝙻 𝙵𝙸𝙻𝚃𝙴𝚁', callback_data='manuelfilter'),
             InlineKeyboardButton('𝙰𝚄𝚃𝙾 𝙵𝙸𝙻𝚃𝙴𝚁', callback_data='autofilter'),
             InlineKeyboardButton('𝙲𝙾𝙽𝙽𝙴𝙲𝚃𝙸𝙾𝙽𝚂', callback_data='coct')
-            ],[
+            ]]
+if 0 < offset <= 6:
+        off_set = 0
+    elif offset == 0:
+        off_set = None
+    else:
+        off_set = offset - 6
+    if n_offset == 0:
+        btn.append(
+            [InlineKeyboardButton("ᴘᴀɢᴇs", callback_data="pages"),
+             InlineKeyboardButton(f"{round(int(offset) / 10) + 1} / {round(total / 10)}",
+                                  callback_data="pages"),
+             InlineKeyboardButton("‹ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}")]
+        )
+    elif off_set is None:
+        btn.append(
+            [
+                InlineKeyboardButton("ᴘᴀɢᴇs", callback_data="pages"),
+                InlineKeyboardButton(f"{round(int(offset) / 10) + 1} / {round(total / 10)}", callback_data="pages"),
+                InlineKeyboardButton("ɴᴇxᴛ ›", callback_data=f"next_{req}_{key}_{n_offset}")]
+        )
+    else:
+        btn.append(
+            [
+                InlineKeyboardButton("‹ ʙᴀᴄᴋ", callback_data=f"next_{req}_{key}_{off_set}"),
+                InlineKeyboardButton(f"{round(int(offset) / 10) + 1} / {round(total / 10)}", callback_data="pages"),
+                InlineKeyboardButton("ɴᴇxᴛ ›", callback_data=f"next_{req}_{key}_{n_offset}")][[
             InlineKeyboardButton('𝚂𝙾𝙽𝙶', callback_data='songs'),
             InlineKeyboardButton('𝙴𝚇𝚃𝚁𝙰', callback_data='extra'),
             InlineKeyboardButton("𝚅𝙸𝙳𝙴𝙾", callback_data='video')
